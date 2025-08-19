@@ -91,6 +91,28 @@ footer p {
   background: white;
 }
 
+#boton img {
+  margin-top: 10px;
+  width: 25px;
+  height: 25px;
+}
+
+#dropdown {
+  display: none;
+  position: absolute;
+  background-color: #212529;
+  padding: 10px;
+  right: 0;
+  margin-top: 8px;
+}
+
+#dropdown a {
+  display: block;
+  margin-bottom: 5px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, .55);
+}
+
 .img-fit {
   max-height: 100%;
 }
