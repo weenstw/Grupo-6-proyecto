@@ -1,0 +1,54 @@
+/* Contenedor principal */
+main.container {
+  padding: 30px !important;
+  background-color: #f8f9fa !important;
+  border-radius: 12px !important;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+/* Tarjetas de autos */
+main .card {
+  width: 100% !important;
+  max-width: 700px !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  margin-bottom: 25px !important;
+}
+
+main .card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important;
+}
+
+/* Imagen del auto */
+main .card img {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: cover !important;
+  border-bottom: 1px solid #ddd !important;
+}
+
+/* Info del auto */
+main .card-body {
+  padding: 15px !important;
+}
+
+main .card-title {
+  font-weight: 700 !important;
+  font-size: 1.25rem !important;
+  margin-bottom: 10px !important;
+}
+
+main .card-text {
+  color: #555 !important;
+  font-size: 0.95rem !important;
+}
+
+main .card-text small {
+  color: #888 !important;
+}
