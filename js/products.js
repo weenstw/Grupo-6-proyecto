@@ -57,8 +57,8 @@ function showProductsList() {
     contenedor.innerHTML = "";
 
     currentProductsArray.forEach(producto => {
-        if (((minCount === undefined) || (producto.soldCount >= minCount)) &&
-            ((maxCount === undefined) || (producto.soldCount <= maxCount))) {
+        if (((minCount === undefined) || (producto.cost >= minCount)) &&
+            ((maxCount === undefined) || (producto.cost <= maxCount))) {
 
             const itemHTML = `
                 <div class="card mb-4">
