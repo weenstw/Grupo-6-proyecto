@@ -1,106 +1,99 @@
-*{
-    padding: 0px;
-    margin: 0px;
-    box-sizing: border-box;
-}
 body {
     margin: 0;
-    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f5f2f1a8;
 }
 
-html, body {
-    height: 100%;
-    margin: 0;
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+.loginForm {
+    width: 850px;
+    margin: auto;
     display: flex;
     flex-direction: column;
-}
-
-main {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.contenedor {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.loginform{
-    padding: 30px;
-    display: flex;
     align-items: center;
     justify-content: center;
-    width: 15vw;
-    flex-direction: column;
-    background-color: #d6e3f7;
-    border-radius: 10px;
-    box-shadow: 12px 12px 2px 1px rgb(0 0 255 / 0.2);
 }
-.loginform .imagen{
-    height: 60px;
-    width: auto;
-}
-.loginform .imagen img{
-    height: 100%;
-    width: auto;
-}
-form .username{
-    position: relative;
-    border-bottom: 2px solid #adadad;
-    margin: 30px 0;
-}
-.username input{
-    width: 100%;
-    padding: 0 5px;
-    height: 40px;
-    font-size: 16px;
-    border: none;
-    background: none;
-    outline: none;
-}
-.username label{
-    position: absolute;
-    top: 50%;
-    left: 5px;
-    color: #adadad;
-    transform: translateY(-50%);
-    font-size: 16px;
-    pointer-events: none;
-}
-.contraseña label{
-    position: absolute;
-    left: 1%;
-    top: 50%; 
-    color: #adadad;
-    transform: translateY(-50%);
-    font-size: 16px;
-    pointer-events: none;
-}
-form .contraseña{
-    position: relative;
-    border-bottom: 2px solid #adadad;
-    margin: 30px 0;
-}
-.contraseña input{
-    width: 100%;
-    padding: 0 5px;
-    height: 40px;
-    font-size: 16px;
-    border: none;
-    background: none;
-    outline: none;
-}
-input[type="submit"]{
-    width: 70%;
-    height: 35px;
-    border: 1px solid;
-    background: #0d6efd;
+
+.loginForm input {
+    margin: 10px 0;
+    padding: 12px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 0.9rem;
+}
+
+.loginForm input[type="submit"] {
+    margin-top: 15px;
+    padding: 12px;
+    border: none;
+    background: #007bff;
     color: white;
+    border-radius: 5px;
     cursor: pointer;
-    outline: none;
+}
+input[type="submit"]:hover {
+    background: #0056b3; 
+}
+.imagen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    height: auto;
+}
+
+.imagen img {
+    max-width: 150px;
+    height: auto;
+}
+
+.image-box {
+    width: calc(100% - 300px);
+    height: 100vh;
+    background-image: url('../img/Gemini_Generated_Image_7kux0m7kux0m7kux.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: #ffa756;
+    box-shadow: 0 0 10px rgba(24, 11, 11, 0.5);
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        width: 100%;
+        margin: 0;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .loginForm {
+        width: 90%;
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    .image-box {
+        display: none;
+    }
+
+    .loginForm input,
+    .loginForm button {
+        width: 100%;
+    }
+}
+@media (max-width: 820px){
+    .image-box {
+        display: none;
+    }
+    
 }
