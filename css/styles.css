@@ -93,17 +93,17 @@ footer p {
 
 #boton {
   display: flex;
-  align-items: center; /* centra verticalmente nombre + imagen */
-  gap: 8px; /* espacio entre el nombre y la imagen */
-  position: relative; /* necesario para que el dropdown se posicione bien */
+  align-items: center;
+  gap: 8px;
+  position: relative;
   cursor: pointer;
 }
 
 #boton img {
-  margin-top: 0; /* ya no hace falta margen si usamos flex */
+  margin-top: 0;
   width: 25px;
   height: 25px;
-  border-radius: 50%; /* opcional: redondear imagen */
+  border-radius: 50%;
 }
 
 #usrname {
@@ -116,12 +116,14 @@ footer p {
   position: absolute;
   background-color: #212529;
   padding: 10px;
-  margin-top: 110px; /* lo baja debajo del usuario+imagen */
-  right: 0; /* alineado a la derecha */
+  margin-top: 110px;
+  right: 0;
   border-radius: 5px;
-  min-width: 150px; /* 👈 ancho mínimo para que se vea más grande */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* sombreado lindo */
+  min-width: 150px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1055;
 }
+
 #dropdown a {
   display: block;
   text-decoration: none;
