@@ -5,6 +5,7 @@ let currentProductsArray = [];
 let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
+let searchQuery = "";
 
 function sortProducts(criteria, array) {
     let result = [];
@@ -23,11 +24,17 @@ function showProductsList() {
     contenedor.innerHTML = "";
 
     currentProductsArray.forEach(producto => {
-        if (((minCount === undefined) || (producto.cost >= minCount)) &&
-            ((maxCount === undefined) || (producto.cost <= maxCount))) {
+        const matchesSearch =
+            producto.name.toLowerCase().includes(searchQuery) ||
+            producto.description.toLowerCase().includes(searchQuery);
 
+        if (
+            matchesSearch &&
+            ((minCount === undefined) || (producto.cost >= minCount)) &&
+            ((maxCount === undefined) || (producto.cost <= maxCount))
+        ) {
             const itemHTML = `
-                <div onclick="setProductID(${producto.id})" class="card mb-4 cursor-pointer">
+                <div class="card mb-4 product-item" data-id="${producto.id}" style="cursor:pointer;">
                     <div class="row g-0">
                         <div class="col-md-4">
                             <img src="${producto.image}" class="img-fluid rounded-start" alt="${producto.name}">
@@ -36,7 +43,7 @@ function showProductsList() {
                             <div class="card-body">
                                 <h5 class="card-title">${producto.name}</h5>
                                 <p class="card-text">${producto.description}</p>
-                                <p class="card-text"><small class="text-muted">Vendidos: ${producto.soldCount}</small></p>
+                                <p class="card-text"><small class="text-muted"><strong>Vendidos:</strong> ${producto.soldCount}</small></p>
                                 <p class="card-text"><strong>${producto.currency} ${producto.cost}</strong></p>
                             </div>
                         </div>
@@ -46,13 +53,15 @@ function showProductsList() {
             contenedor.innerHTML += itemHTML;
         }
     });
-}
 
-function setProductID(id) {
-    localStorage.setItem("productID", id);
-    window.location = "product-info.html";
+    document.querySelectorAll(".product-item").forEach(item => {
+        item.addEventListener("click", () => {
+            const productId = item.getAttribute("data-id");
+            localStorage.setItem("productID", productId);
+            window.location = "product-info.html";
+        });
+    });
 }
-
 
 function sortAndShowProducts(sortCriteria, productsArray) {
     currentSortCriteria = sortCriteria;
@@ -64,13 +73,9 @@ function sortAndShowProducts(sortCriteria, productsArray) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Recuperar el ID de categoría guardado en localStorage
     const catID = localStorage.getItem("catID");
-
-    // Construir la URL dinámica
     const URL = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
 
-    // Cargar productos de la categoría seleccionada
     fetch(URL)
         .then(response => response.json())
         .then(data => {
@@ -91,7 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
         sortAndShowProducts(ORDER_BY_SOLD_COUNT);
     });
 
-    // Filtro por rango
     document.getElementById("clearRangeFilter")?.addEventListener("click", () => {
         document.getElementById("rangeFilterCountMin").value = "";
         document.getElementById("rangeFilterCountMax").value = "";
@@ -107,6 +111,11 @@ document.addEventListener("DOMContentLoaded", function () {
         minCount = (minInput !== "" && parseInt(minInput) >= 0) ? parseInt(minInput) : undefined;
         maxCount = (maxInput !== "" && parseInt(maxInput) >= 0) ? parseInt(maxInput) : undefined;
 
+        showProductsList();
+    });
+
+    document.getElementById("product-search")?.addEventListener("input", (e) => {
+        searchQuery = e.target.value.toLowerCase();
         showProductsList();
     });
 });
