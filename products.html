@@ -47,18 +47,7 @@
   </nav>
 
   <div class="container">
-    <div class="row">
-      <div class="col text-end">
-        <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
-          <input type="radio" class="btn-check" name="options" id="sortAsc">
-          <label class="btn btn-light" for="sortAsc">A-Z</label>
-          <input type="radio" class="btn-check" name="options" id="sortDesc">
-          <label class="btn btn-light" for="sortDesc">Z-A</label>
-          <input type="radio" class="btn-check" name="options" id="sortByCount" checked>
-          <label class="btn btn-light" for="sortByCount"><i class="fas fa-sort-amount-down mr-1"></i></label>
-        </div>
-      </div>
-    </div>
+    
     <div class="row">
       <div class="col-lg-6 col-md-12 mb-1 d-flex flex-column container">
         <div class="row g-2 align-items-center m-0">
@@ -66,19 +55,28 @@
             <p class="mb-0">Cant.</p>
           </div>
           <div class="col">
-            <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin">
+            <input class="form-control form-control-sm" type="number" placeholder="min." id="rangeFilterCountMin">
           </div>
           <div class="col">
-            <input class="form-control" type="number" placeholder="máx." id="rangeFilterCountMax">
+            <input class="form-control form-control-sm" type="number" placeholder="máx." id="rangeFilterCountMax">
           </div>
           <div class="col-12 col-sm-auto">
-            <div class="btn-group w-100" role="group">
+            <div class="btn-group btn-group-sm" role="group">
               <button class="btn btn-light" id="rangeFilterCount">Filtrar</button>
               <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
             </div>
           </div>
           <div class="col-12 mt-2">
-            <input type="search" id="product-search" class="form-control" placeholder="Buscar productos...">
+            <input type="search" id="product-search" class="form-control form-control-sm"
+              placeholder="Buscar productos...">
+          </div>
+          <div class="btn-group btn-group-sm" role="group">
+            <input type="radio" class="btn-check" name="options" id="sortAsc">
+            <label class="btn btn-light" for="sortAsc">A-Z</label>
+            <input type="radio" class="btn-check" name="options" id="sortDesc">
+            <label class="btn btn-light" for="sortDesc">Z-A</label>
+            <label class="btn btn-light" id="sortPriceAsc"><i class="fas fa-sort-amount-up"></i></label>
+            <label class="btn btn-light" id="sortPriceDesc"><i class="fas fa-sort-amount-down"></i></label>
           </div>
         </div>
       </div>
