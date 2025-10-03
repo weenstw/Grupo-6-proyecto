@@ -6,10 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
 
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700,900" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link href="css/styleprod.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -33,9 +35,10 @@
           <li class="nav-item">
           </li>
           <li class="nav-item" id="boton">
-            <p id="usrname"></p>
+
             <img src="img/img_perfil.png" alt="">
             <div id="dropdown">
+              <p id="usrname"></p>
               <a href="my-profile.html">Mi perfil</a>
               <a href="" id="logout">Cerrar sesión</a>
             </div>
@@ -44,38 +47,69 @@
       </div>
     </div>
   </nav>
+
   <main>
-    <div class="container mt-4">
-      <h2 id="product-name"></h2>
-      <p id="product-description"></p>
-      <p><strong>Categoría:</strong> <span id="product-category"></span></p>
-      <p><strong>Precio:</strong> <span id="product-price"></span></p>
-      <p id="product-soldcount"></p>
-      <div id="product-images" class="d-flex flex-wrap"></div>
-    </div>
+    <div class="container my-4">
+
+
+      <div class="mb-4">
+        <h2 class="mb-3">Nombre del producto</h2>
+        <img id="mainImage" src="https://via.placeholder.com/600x400" class="img-fluid rounded mb-3"
+          alt="Producto principal">
+        <div id="galleryContainer" class="d-flex flex-wrap mt-3"></div>
+        <p class="lead">Descripción breve del producto. Aquí va la información más importante sobre el producto
+          seleccionado.</p>
+        <p><strong>Precio:</strong> $3.499</p>
+        <button class="btn btn-primary">Agregar al carrito</button>
+      </div>
+
+      <section id="calificaciones" class="mb-5">
+        <h3 class="border-bottom pb-2">Calificaciones de Usuarios</h3>
+        <div class="list-group my-3" id="ratingList"></div>
+
+        <div class="card p-3 shadow-sm mt-3">
+          <h5 class="mb-3">Dejá tu calificación</h5>
+          <form id="ratingForm">
+            <div class="mb-3">
+              <label for="comment" class="form-label">Comentario:</label>
+              <textarea id="comment" class="form-control" placeholder="Escribí tu comentario..." required></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Calificación:</label>
+              <div class="star-rating d-flex justify-content-start" id="starRating">
+                <span class="star" data-value="1">☆</span>
+                <span class="star" data-value="2">☆</span>
+                <span class="star" data-value="3">☆</span>
+                <span class="star" data-value="4">☆</span>
+                <span class="star" data-value="5">☆</span>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-success mt-2">Enviar</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="productos-relacionados" class="mb-5">
+        <h3 class="border-bottom pb-2">Productos Relacionados</h3>
+        <div id="relatedContainer" class="row mt-3">
+        </div>
   </main>
-  <footer class="text-muted">
+
+  <footer class="text-mute">
     <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
-      </p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a
+          Programar</a></p>
     </div>
   </footer>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
+
   <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/init.js"></script>
   <script src="js/product-info.js"></script>
   <script src="js/auth.js"></script>
-
 </body>
 
 </html>

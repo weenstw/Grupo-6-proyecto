@@ -227,3 +227,11 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.star-rating .star {
+  flex: 0 0 40px;
+  text-align: center;
+  font-size: 30px;
+  cursor: pointer;
+  user-select: none;
+}
