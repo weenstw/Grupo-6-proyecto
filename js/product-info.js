@@ -123,12 +123,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   let selectedRating = 0;
   const productID = localStorage.getItem("productID");
 
-  // Función para dibujar estrellas en comentarios
   function generarEstrellas(score) {
     return "⭐".repeat(score) + "☆".repeat(5 - score);
   }
 
-  // Cargar comentarios desde la API
   try {
     const res = await fetch(`https://japceibal.github.io/emercado-api/products_comments/${productID}.json`);
     const comentarios = await res.json();
@@ -147,7 +145,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Error cargando comentarios:", err);
   }
 
-  // Funciones para manejar hover y click de estrellas
   function highlightStars(value) {
     stars.forEach((s, index) => {
       s.textContent = index < value ? "⭐" : "☆";
@@ -160,7 +157,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  // Eventos de cada estrella
   stars.forEach(star => {
     star.addEventListener("mouseover", () => {
       const value = parseInt(star.getAttribute("data-value"));
@@ -177,7 +173,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 
-  // Enviar nuevo comentario
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
