@@ -11,9 +11,7 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/styleprod.css" rel="stylesheet">
-
 </head>
-
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
@@ -35,12 +33,16 @@
           <li class="nav-item">
           </li>
           <li class="nav-item" id="boton">
-
-            <img src="img/img_perfil.png" alt="">
+            <img id="navProfileImage" src="img/img_perfil.png" alt="perfil"
+              style="width:30px; height:30px; border-radius:50%;">
             <div id="dropdown">
               <p id="usrname"></p>
               <a href="my-profile.html">Mi perfil</a>
               <a href="" id="logout">Cerrar sesión</a>
+              <div class="form-check form-switch text-light mt-2">
+                <input class="form-check-input" type="checkbox" id="darkModeSwitch">
+                <label class="form-check-label" for="darkModeSwitch">Modo oscuro</label>
+              </div>
             </div>
           </li>
         </ul>
