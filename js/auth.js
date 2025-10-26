@@ -21,6 +21,10 @@ function verificarUsuario() {
     }
 
     initDarkMode();
+
+    // ======= INICIO: Actualizar contador carrito =======
+    actualizarContadorCarritoNav();
+    // ======= FIN: Actualizar contador carrito =======
 }
 
 document.addEventListener("DOMContentLoaded", verificarUsuario);
@@ -59,7 +63,6 @@ function initDropdownPerfil() {
         window.location.href = "login.html";
     });
 }
-
 
 function initDarkMode() {
     const switchInput = document.getElementById("darkModeSwitch");
@@ -103,3 +106,12 @@ function initDarkMode() {
         }
     }
 }
+
+// ======= INICIO: Función contador carrito =======
+function actualizarContadorCarritoNav() {
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+    const cartCount = document.getElementById("cartCount");
+    if (cartCount) cartCount.textContent = totalItems;
+}
+// ======= FIN: Función contador carrito =======

@@ -196,7 +196,23 @@ footer p {
     transform: rotate(360deg);
   }
 }
-
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+}
+#cartIcon i {
+  font-size: 20px;
+}
+#cartIcon:hover {
+  opacity: 0.8;
+}
 .signin {
   width: 100%;
   max-width: 330px;
@@ -314,7 +330,20 @@ footer,
 main {
   transition: background-color 0.4s ease, color 0.4s ease;
 }
+.dark-mode .table {
+  background-color: #1e1e1e !important;
+  color: #e0e0e0 !important;
+  border-color: #333 !important;
+}
 
+.dark-mode .table th,
+.dark-mode .table td {
+  border-color: #444 !important;
+}
+.dark-mode .table-hover tbody tr:hover {
+  background-color: #2a2a2a !important; 
+  color: #ffffff !important;             
+}
 /*fin delmodo oscuro*/
 @media (max-width: 768px) {
   .jumbotron {

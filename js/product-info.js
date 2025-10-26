@@ -251,3 +251,108 @@ document.addEventListener("DOMContentLoaded", async function () {
     console.error("Error cargando productos relacionados:", err);
   }
 });
+document.addEventListener("DOMContentLoaded", () => {
+
+  const btnAgregar = document.querySelector("button.btn.btn-primary");
+
+  actualizarContadorCarrito();
+
+  btnAgregar.addEventListener("click", () => {
+    const productID = localStorage.getItem("productID");
+    const name = document.querySelector("h2").textContent;
+    const priceText = document.querySelector("p strong").nextSibling.textContent.trim();
+    const [currency, cost] = priceText.split(" ");
+    const img = document.getElementById("mainImage").src;
+
+    const producto = {
+      id: productID,
+      name,
+      currency,
+      cost: parseFloat(cost),
+      img,
+      cantidad: 1
+    };
+
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    const existe = carrito.find(item => item.id == productID);
+
+    if (existe) {
+      existe.cantidad += 1;
+      mostrarAlerta(`Cantidad actualizada: ahora tienes ${existe.cantidad} unidades de "${name}"`);
+    } else {
+      carrito.push(producto);
+      mostrarAlerta(`Producto agregado: "${name}"`);
+    }
+
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    actualizarContadorCarrito();
+    mostrarControlesCantidad();
+  });
+  function mostrarAlerta(mensaje) {
+    const alerta = document.createElement("div");
+    alerta.className = "alert alert-success text-center";
+    alerta.textContent = mensaje;
+
+    document.body.prepend(alerta);
+
+    alerta.style.margin = "10px auto";
+    alerta.style.maxWidth = "600px";
+    setTimeout(() => {
+      alerta.remove();
+    }, 3000);
+  }
+
+
+});
+
+function actualizarContadorCarrito() {
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  const total = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+  const cartCount = document.getElementById("cartCount");
+  if (cartCount) cartCount.textContent = total;
+}
+
+// ======= CONTROLES DE CANTIDAD EN PRODUCT-INFO =======
+document.addEventListener("DOMContentLoaded", () => {
+  mostrarControlesCantidad();
+});
+
+function mostrarControlesCantidad() {
+  const productID = localStorage.getItem("productID");
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  const producto = carrito.find(item => item.id == productID);
+  const container = document.getElementById("cantidadContainer");
+  const subtotalContainer = document.getElementById("subtotalContainer");
+
+  if (producto) {
+    container.innerHTML = `
+      <div class="d-flex align-items-center">
+        <button class="btn btn-sm btn-secondary" onclick="cambiarCantidadProducto(-1)">-</button>
+        <span id="cantidadActual" class="mx-3 fs-4">${producto.cantidad}</span>
+        <button class="btn btn-sm btn-secondary" onclick="cambiarCantidadProducto(1)">+</button>
+      </div>
+    `;
+    subtotalContainer.textContent = `Subtotal: ${producto.currency} ${(producto.cantidad * producto.cost).toFixed(2)}`;
+  } else {
+    container.innerHTML = ``;
+    subtotalContainer.textContent = ``;
+  }
+}
+
+function cambiarCantidadProducto(cambio) {
+  const productID = localStorage.getItem("productID");
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  const producto = carrito.find(item => item.id == productID);
+
+  if (!producto) return;
+
+  producto.cantidad += cambio;
+
+  if (producto.cantidad <= 0) {
+    carrito = carrito.filter(item => item.id != productID);
+  }
+
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  actualizarContadorCarrito();
+  mostrarControlesCantidad();
+}
