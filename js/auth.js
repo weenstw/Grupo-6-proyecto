@@ -1,3 +1,7 @@
+//verifica si hay un usuario logueado. Si no lo hay, redirecciona al login.
+//ademas de eso si hay un usuario logeado inicializa el menú desplegable,
+//pone en funcion el modo oscuro si el usuario lo tiene configurado
+//actualiza el carrito con lo que el usuario haya guardado.
 function verificarUsuario() {
     const usuario = localStorage.getItem("usuario");
     if (!usuario) {
@@ -21,12 +25,11 @@ function verificarUsuario() {
     }
 
     initDarkMode();
-
-    // ======= INICIO: Actualizar contador carrito =======
     actualizarContadorCarritoNav();
-    // ======= FIN: Actualizar contador carrito =======
 }
-
+//watchdog de sesion, vigila constantemente que exista un usuario en el localStorage
+//y maneja el menú del perfil y la función de cerrar sesión.
+//redirige si la sesión se pierde, detecta logout desde otras pestañas,
 document.addEventListener("DOMContentLoaded", verificarUsuario);
 
 setInterval(() => {
@@ -63,7 +66,9 @@ function initDropdownPerfil() {
         window.location.href = "login.html";
     });
 }
-
+// Inicializa el modo oscuro, lee la preferencia guardada, ajusta la UI,
+// y permite activar/desactivar el dark mode con el interruptor, 
+// guardando el estado en localStorage.
 function initDarkMode() {
     const switchInput = document.getElementById("darkModeSwitch");
     const body = document.body;
@@ -106,12 +111,11 @@ function initDarkMode() {
         }
     }
 }
-
-// ======= INICIO: Función contador carrito =======
+// Actualiza el contador del ícono del carrito en la barra de navegación,
+// sumando la cantidad total de productos guardados en el localStorage.
 function actualizarContadorCarritoNav() {
     const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
     const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
     const cartCount = document.getElementById("cartCount");
     if (cartCount) cartCount.textContent = totalItems;
 }
-// ======= FIN: Función contador carrito =======

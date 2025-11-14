@@ -1,4 +1,7 @@
-// ======= CARGA DEL PRODUCTO PRINCIPAL CON GALERÍA =======
+// CARGA DEL PRODUCTO PRINCIPAL CON GALERÍA
+// Obtiene el ID del producto almacenado en localStorage, descarga sus datos desde la API
+// y muestra el nombre, descripción, precio e imágenes. También arma la galería de miniaturas
+// y permite cambiar la imagen principal o abrirla en un lightbox al hacer clic.
 document.addEventListener("DOMContentLoaded", function () {
   const productID = localStorage.getItem("productID");
   if (!productID) return;
@@ -43,7 +46,9 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     })
     .catch(err => console.error("Error cargando producto:", err));
-
+// Muestra un lightbox a pantalla completa con la imagen seleccionada del producto.
+// Crea una superposición oscura, coloca la imagen ampliada y agrega controles para
+// cerrar, avanzar y retroceder entre las fotos de la galería.
   function showLightbox() {
     overlay = document.createElement("div");
     overlay.style.position = "fixed";
@@ -113,7 +118,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-// ======= SISTEMA DE ESTRELLAS Y COMENTARIOS =======
+// ======= SISTEMA DE ESTRELLAS Y COMENTARIOS
+// Maneja el sistema de comentarios y calificaciones del producto.
+// Carga los comentarios existentes desde la API y los muestra en la lista.
+// Permite seleccionar una calificación de 1 a 5 estrellas con interacción visual
+//   (hover y selección fija).
+// Prepara el envío del nuevo comentario del usuario junto con su puntuación.
 document.addEventListener("DOMContentLoaded", async () => {
   const form = document.getElementById("ratingForm");
   const commentInput = document.getElementById("comment");
@@ -172,7 +182,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       resetHover();
     });
   });
-
+//Maneja el envío de un nuevo comentario, 
+// Lo agrega al inicio de la lista y resetea el formulario y las estrellas.
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -210,7 +221,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 
-// ======= NUEVO: PRODUCTOS RELACIONADOS =======
+//PRODUCTOS RELACIONADOS 
+//Hace una petición a la API y extrae los productos relacionados de esa respuesta
 document.addEventListener("DOMContentLoaded", async function () {
   const productID = localStorage.getItem("productID");
   if (!productID) return;
@@ -251,6 +263,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     console.error("Error cargando productos relacionados:", err);
   }
 });
+//detecta el clic obtiene los datos del producto mostrado, 
+// lo guarda en el carrito del localStorage, aumenta la cantidad si ya existe, 
+// actualiza el contador del carrito y muestra una alerta informando la acción.
 document.addEventListener("DOMContentLoaded", () => {
 
   const btnAgregar = document.querySelector("button.btn.btn-primary");
@@ -288,6 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
     actualizarContadorCarrito();
     mostrarControlesCantidad();
   });
+  //crea un mensaje temporal en pantalla indicando una acción.
   function mostrarAlerta(mensaje) {
     const alerta = document.createElement("div");
     alerta.className = "alert alert-success text-center";
@@ -304,7 +320,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 });
-
+//recalcula la cantidad total de productos en el carrito y actualiza el contador del ícono.
 function actualizarContadorCarrito() {
   const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
   const total = carrito.reduce((sum, item) => sum + item.cantidad, 0);
@@ -312,7 +328,11 @@ function actualizarContadorCarrito() {
   if (cartCount) cartCount.textContent = total;
 }
 
-// ======= CONTROLES DE CANTIDAD EN PRODUCT-INFO =======
+//Controles para manejar la cantidad del producto desde la página del propio producto.
+//Si el artículo ya está en el carrito,
+//actualiza el subtotal y permite agregar o quitar unidades.
+//Cada cambio se guarda en localStorage, se refresca el contador del carrito 
+// y se vuelve a renderizar la interfaz.
 document.addEventListener("DOMContentLoaded", () => {
   mostrarControlesCantidad();
 });

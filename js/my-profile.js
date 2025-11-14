@@ -55,3 +55,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+// Carga y muestra los datos del perfil guardados en localStorage (nombre, apellido,
+// teléfono e imagen). Permite actualizar la información del usuario mediante un
+// formulario y guardar los cambios localmente. También maneja la carga de una nueva
+// imagen de perfil convirtiéndola a Base64 y actualizándola tanto en la vista como
+// en el menú de navegación.

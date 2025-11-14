@@ -1,3 +1,8 @@
+// Define los criterios de ordenamiento y variables globales usadas para manejar
+// la lista de categorías, incluyendo filtros y búsquedas.
+// La función 'sortCategories' ordena las categorías según el criterio elegido
+// (A-Z, Z-A o cantidad de productos). 
+// La función 'setCatID' guarda la categoría seleccionada y redirige a la página de productos.
 const ORDER_ASC_BY_NAME = "AZ";
 const ORDER_DESC_BY_NAME = "ZA";
 const ORDER_BY_PROD_COUNT = "Cant.";
@@ -23,7 +28,11 @@ function setCatID(id) {
     localStorage.setItem("catID", id);
     window.location = "products.html"
 }
-
+// Muestra la lista de categorías aplicando filtros (búsqueda, rango de productos)  
+// y orden seleccionado. Además renderiza el HTML con la información de cada categoría.
+//
+// La función 'sortAndShowCategories' actualiza el criterio de ordenamiento,
+// ordena el arreglo actual y vuelve a mostrar la lista.
 function showCategoriesList(){
     let htmlContentToAppend = "";
     for(let i = 0; i < currentCategoriesArray.length; i++){
@@ -69,7 +78,9 @@ function sortAndShowCategories(sortCriteria, categoriesArray){
     currentCategoriesArray = sortCategories(currentSortCriteria, currentCategoriesArray);
     showCategoriesList();
 }
-
+// Carga las categorías al iniciar la página, configura los botones de ordenamiento,
+// aplica filtros por cantidad, restablece filtros, y permite buscar categorías.
+// Cada acción actualiza dinámicamente la lista mostrada en pantalla.
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(CATEGORIES_URL).then(function(resultObj){
         if (resultObj.status === "ok"){

@@ -13,7 +13,6 @@
 </head>
 
 <body>
-  <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -25,9 +24,6 @@
           <li class="nav-item"><a class="nav-link" href="categories.html">Categorías</a></li>
           <li class="nav-item"><a class="nav-link" href="sell.html">Vender</a></li>
 
-
-
-          <!-- Perfil -->
           <li class="nav-item" id="boton">
             <img id="navProfileImage" src="img/img_perfil.png" alt="perfil"
               style="width:30px; height:30px; border-radius:50%;">
@@ -41,7 +37,7 @@
               </div>
             </div>
           </li>
-          <!-- Carrito -->
+
           <li class="nav-item position-relative">
             <a class="nav-link active" href="cart.html" id="cartIcon">
               <i class="fa-solid fa-cart-shopping"></i>
@@ -53,18 +49,60 @@
     </div>
   </nav>
 
-  <!-- CONTENIDO -->
   <main class="container my-4">
-    <h2 class="mb-4">Carrito de Compras</h2>
-    <div id="carritoContainer"></div>
-    <hr>
-    <div class="text-end mt-3">
-      <h4>Total: <span id="totalCarrito">0</span></h4>
-      <button class="btn btn-success">Proceder al pago</button>
-      <div class="mt-3">
-        <img src="img/Logos-01.png" alt="Métodos de pago aceptados" style="max-width: 280px;">
-      </div>
-    </div>
+
+    <body class="bg-light">
+      <div class="container my-4">
+        <h2 class="mb-4">Carrito de Compras</h2>
+        <div id="carritoContainer"></div>
+        <div class="text-end mt-3">
+          <button id="convertirMoneda" class="btn btn-outline-primary mb-3">Mostrar en USD</button>
+          <h4>Subtotal: <span id="subtotalCarrito">0</span></h4>
+        </div>
+
+        <hr>
+        <div class="mb-4">
+          <h5>Tipo de envío</h5>
+          <div>
+            <input type="radio" name="envio" id="premium" value="0.15">
+            <label for="premium">Premium 2 a 5 días (15%)</label><br>
+            <input type="radio" name="envio" id="express" value="0.07">
+            <label for="express">Express 5 a 8 días (7%)</label><br>
+            <input type="radio" name="envio" id="standard" value="0.05">
+            <label for="standard">Standard 12 a 15 días (5%)</label>
+          </div>
+        </div>
+
+        <!--  Dirección -->
+        <div class="mb-4">
+          <h5>Dirección de envío</h5>
+          <div class="row g-2">
+            <div class="col-md-4"><input type="text" id="departamento" class="form-control" placeholder="Departamento">
+            </div>
+            <div class="col-md-4"><input type="text" id="localidad" class="form-control" placeholder="Localidad"></div>
+            <div class="col-md-4"><input type="text" id="calle" class="form-control" placeholder="Calle"></div>
+            <div class="col-md-4"><input type="number" id="numero" class="form-control" placeholder="Número"></div>
+            <div class="col-md-4"><input type="text" id="esquina" class="form-control" placeholder="Esquina"></div>
+          </div>
+        </div>
+
+        <!-- Forma de pago -->
+        <div class="mb-4">
+          <h5>Forma de pago</h5>
+          <select id="formaPago" class="form-select w-50 mb-3">
+            <option value="">Seleccionar forma de pago</option>
+            <option value="tarjeta">Tarjeta de crédito</option>
+            <option value="transferencia">Transferencia bancaria</option>
+          </select>
+          <img src="img/Logos-01.png" alt="Métodos de pago" style="max-width: 280px;">
+        </div>
+
+        <!-- Total -->
+        <h5 class="fw-bold mt-2">
+          Total: <span id="totalCarrito">$0</span>
+        </h5>
+
+        <button id="finalizarCompra" class="btn btn-success mt-3">Finalizar compra</button>
 
   </main>
 
@@ -75,11 +113,33 @@
       </p>
     </div>
   </footer>
-
+  <div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="modalCompraLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title" id="modalCompraLabel">Confirmar compra</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Resumen:</strong></p>
+          <p>Subtotal: <span id="modalSubtotal"></span></p>
+          <p>Envío: <span id="modalEnvio"></span></p>
+          <p><strong>Total: <span id="modalTotal"></span></strong></p>
+          <p>Forma de pago: <span id="modalPago"></span></p>
+          <p>Dirección: <span id="modalDireccion"></span></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success" id="confirmarCompra">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/auth.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
